@@ -9,6 +9,7 @@ class fileToField extends middleware {
 
             const cover = req.files.find(fi => fi.fieldname == 'cover')
             const music = req.files.find(fi => fi.fieldname == 'music')
+
             // req.body = {}         
             if (!req.body)
                 req.body = { cover: null, music: null }

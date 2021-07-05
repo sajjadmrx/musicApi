@@ -2,9 +2,11 @@ const express = require('express')
 const router = express.Router();
 
 //Routers
-const addMusic = require('./addMusic');
+const musicRouters = require('./music');
+const artisRouters = require('./artis');
 
 
-router.use('/addMusic', addMusic)
+router.use('/music', musicRouters)
+router.use('/artis', artisRouters)
 
 module.exports = router;

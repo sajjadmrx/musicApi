@@ -4,14 +4,31 @@ const path = require('path');
 // parent 
 const controllers = require('../controller')
 
-class addMusic extends controllers {
 
-    async handel(req, res, next) {
+// Models 
+const musicModel = require('../../../models/music')
+
+class music extends controllers {
+
+    async addMusic(req, res, next) {
 
         const validator = await this.checkValidator(req)
 
         if (!validator.isOk)
             return res.json({ success: false, message: validator.message, code: 400 })
+
+
+        const { artis, artisCode, nameMusic, cover, music } = req.body;
+
+        let newMusic = new musicModel({
+            artis,
+            artisCode,
+            nameMusic,
+            cover,
+            music
+        })
+        newMusic = await newMusic.save()
+        req.body.musicID = newMusic._id
         res.json({
             success: true, message: 'با موفقیت اپلود شد', code: 200, data: {
                 ...req.body
@@ -24,4 +41,4 @@ class addMusic extends controllers {
 }
 
 
-module.exports = new addMusic();
+module.exports = new music();
