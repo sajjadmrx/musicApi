@@ -4,7 +4,7 @@ const fs = require('fs');
 const path = require('path');
 
 
-
+const extFile = ['image/jpeg', 'image/png']
 
 const getAddressDrMusic = () => {
     const year = new Date().getFullYear();
@@ -30,18 +30,11 @@ const ImageStorage = multer.diskStorage({
             mkd.sync(getAddressDrMusic())
             cb(null, getAddressDrMusic())
         }
-        else if (file.mimetype == 'image/jpeg') {
-            // if (!fs.existsSync(pathCover))
-            //     cb(null, path.resolve('/'))
-            // else
-            //     cb(null, Date.now() + `-${file.originalname}`)
+        else if (extFile.includes(file.mimetype)) {
             mkd.sync(getAddressDrCover())
             cb(null, getAddressDrCover())
         }
-        else {
-            console.log(file.mimetype)
-            cb({ error: 'Mime type not supported' })
-        }
+
     },
     filename: (req, file, cb) => {
         const musicPath = getAddressDrMusic() + `/${file.originalname}`
@@ -54,16 +47,13 @@ const ImageStorage = multer.diskStorage({
             else
                 cb(null, Date.now() + `-${file.originalname}`)
         }
-        else if (file.mimetype == 'image/jpeg') {
+        else if (extFile.includes(file.mimetype)) {
             if (!fs.existsSync(pathCover))
                 cb(null, file.originalname)
             else
                 cb(null, Date.now() + `-${file.originalname}`)
         }
-        else {
-            console.log(file.mimetype)
-            cb({ error: 'Mime type not supported' })
-        }
+
 
 
 

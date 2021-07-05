@@ -14,8 +14,7 @@ class addMusic extends controllers {
             return res.json({ success: false, message: validator.message, code: 400 })
         res.json({
             success: true, message: 'با موفقیت اپلود شد', code: 200, data: {
-                cover: path.join(req.body.cover),
-                music: path.join(req.body.music)
+                ...req.body
             }
         })
         // fs.createReadStream(req.file).pipe(res);

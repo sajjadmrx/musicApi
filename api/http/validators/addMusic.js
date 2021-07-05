@@ -12,6 +12,7 @@ class checkFormat {
                 const extFile = ['.png', '.jpg', '.jpeg', '.svg', '.PNG', '.JPG']
                 if (!extFile.includes(path.extname(value)))
                     throw new Error('فرمت  کاور(تصویر) مجاز نیست.')
+                return true
             }),
             check('music').custom((value, { req }) => {
                 if (!value)
@@ -19,6 +20,7 @@ class checkFormat {
                 const extFile = ['.mp3']
                 if (!extFile.includes(path.extname(value)))
                     throw new Error('فرمت  موزیک مجاز نیست.')
+                return true
             })
         ]
     }
