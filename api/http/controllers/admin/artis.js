@@ -25,9 +25,9 @@ class artisClass extends controllers {
 
                 $or: [
                     {
-                        'artiName.english': nameEnglish,
+                        'artisName.english': nameEnglish,
                     },
-                    { 'artiName.farsi': nameFarsi }
+                    { 'artisName.farsi': nameFarsi }
                 ]
 
             })
@@ -39,10 +39,10 @@ class artisClass extends controllers {
 
 
             let newArtis = await new artisModel({
-                'artiName.english': nameEnglish,
-                'artiName.farsi': nameFarsi,
+                'artisName.english': nameEnglish,
+                'artisName.farsi': nameFarsi,
                 bio,
-                avatar,
+                avatar: path.join(avatar)
             })
             await newArtis.save()
             req.body.artisID = newArtis._id
@@ -59,15 +59,7 @@ class artisClass extends controllers {
         }
     }
 
-    async getAll(req, res, next) {
-        try {
-            const page = req.query.page || 1;
-            const artisList = await artisModel.paginate({}, { page, limit: 5, select: ['artiName', ['avatar']] },)
-            res.json({ success: true, code: 200, data: artisList })
-        } catch (error) {
 
-        }
-    }
 
 }
 

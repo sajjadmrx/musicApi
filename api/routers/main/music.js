@@ -7,15 +7,14 @@ const upload = require('../../http/helpers/uploadMusic')
 
 
 //controllers
-const AdminMusic = require('../../http/controllers/admin/music')
 
+const mainMusic = require('../../http/controllers/main/music')
 //middleware 
 const fileToField = require('../../http/middleware/fileToFieldAddMusic')
 
 //Validator 
 const checkFormat = require('../../http/validators/addMusic')
 
-
-router.post('/upload', upload.any(), fileToField.handel, checkFormat.handel(), AdminMusic.addMusic)
+router.get('/', mainMusic.getMusicList)
 
 module.exports = router;

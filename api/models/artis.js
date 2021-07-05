@@ -5,7 +5,7 @@ const mongoosePaginate = require('mongoose-paginate-v2')
 
 const artisModel = new mongoose.Schema({
 
-    artiName: { english: { type: String }, farsi: { type: String } },
+    artisName: { english: { type: String }, farsi: { type: String } },
     // artisCode: { type: String, require: true },
     bio: { type: String, default: 'چیزی نوشته نشده...' },
 

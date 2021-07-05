@@ -6,12 +6,9 @@ const router = express.Router();
 
 //routers
 const adminRoutes = require('./admin')
+const mainRoutes = require('./main')
 
-
-router.get('/', (req, res) => {
-
-    res.json({ success: true, code: 200, data: { message: 'Hello World' } })
-})
+router.use(mainRoutes)
 
 
 router.use('/admin', adminRoutes)

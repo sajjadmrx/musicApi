@@ -7,8 +7,8 @@ const upload = require('../../http/helpers/uploadAvatarArtis')
 
 
 //controllers
-const adminArtis = require('../../http/controllers/admin/artis')
 
+const mainArtis = require('../../http/controllers/main/artis')
 
 //middleware 
 const fileToField = require('../../http/middleware/fileToFieldAddArtis')
@@ -16,12 +16,7 @@ const fileToField = require('../../http/middleware/fileToFieldAddArtis')
 //Validator 
 const checkAddArtis = require('../../http/validators/addArtis')
 
+router.get('/', mainArtis.getAll)
 
-router.post('/add',
-    upload.single('avatar'),
-    fileToField.handel,
-    checkAddArtis.handel(),
-    adminArtis.addArtis
-)
 
 module.exports = router;

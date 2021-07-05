@@ -18,14 +18,13 @@ class music extends controllers {
             return res.json({ success: false, message: validator.message, code: 400 })
 
 
-        const { artis, artisCode, nameMusic, cover, music } = req.body;
+        const { artis, nameMusic, cover, music } = req.body;
 
         let newMusic = new musicModel({
             artis,
-            artisCode,
             nameMusic,
-            cover,
-            music
+            cover: path.join(cover),
+            music: path.join(music)
         })
         newMusic = await newMusic.save()
         req.body.musicID = newMusic._id
